@@ -2,6 +2,11 @@ package ic.doc;
 
 import java.util.Stack;
 
+/* Class that implements Reverse Polish Calculator.
+ * It can perform simple operations such as:
+ * addition, subtraction, multiplication and division.
+ * All the values written in the text field are pushed
+ * to the calculator's internal stack. */
 public class BackEnd {
 
   private final Stack<Double> values = new Stack<>();

@@ -9,6 +9,7 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.WindowConstants;
 
+/* View component of the Reverse Polish Calculator app. */
 public class View implements Updatable {
 
   private final int textFieldSize = 10;
@@ -17,6 +18,8 @@ public class View implements Updatable {
 
   public final JTextField textField;
 
+  /* Initializes frame and panel, populates them with buttons
+   * and the text field and displays the frame when finished. */
   public View(ActionListener controller) {
     JFrame frame = new JFrame();
     JPanel panel = new JPanel();
@@ -35,14 +38,8 @@ public class View implements Updatable {
     frame.setVisible(true);
   }
 
-  public JTextField getTextField() {
-    return textField;
-  }
-
-  public void update(BackEnd backEnd) {
-    textField.setText(backEnd.getText());
-  }
-
+  /* Creates buttons for digits, operations,
+   * clearing the text field and pushing to stack. */
   private List<JButton> createButtons() {
     List<JButton> buttons = new ArrayList<>();
     for (int i = 1; i < 10; i++) {
@@ -56,5 +53,14 @@ public class View implements Updatable {
     buttons.add(new JButton("Clear"));
     buttons.add(new JButton("Push"));
     return buttons;
+  }
+
+  public JTextField getTextField() {
+    return textField;
+  }
+
+  /* Sets the value of the text field to the one specified by the back end. */
+  public void update(BackEnd backEnd) {
+    textField.setText(backEnd.getText());
   }
 }

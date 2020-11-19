@@ -4,6 +4,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.JTextField;
 
+/* Wires together the view and back end using the Controller. */
 public class GuiApp {
 
   private final BackEnd backEnd;
@@ -14,6 +15,7 @@ public class GuiApp {
     this.view = new View(new Controller());
   }
 
+  /* Calls back end methods according to user input. */
   private class Controller implements ActionListener {
 
     @Override
@@ -21,6 +23,7 @@ public class GuiApp {
       perform(e.getActionCommand());
     }
 
+    /* Compares action string to known actions and calls the back end. */
     public void perform(String action) {
       JTextField textField = view.getTextField();
 
@@ -59,6 +62,7 @@ public class GuiApp {
     }
   }
 
+  /* Starts the Calculator. */
   public static void main(String[] args) {
     new GuiApp();
   }
