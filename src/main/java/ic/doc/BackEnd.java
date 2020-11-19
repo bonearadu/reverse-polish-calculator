@@ -2,15 +2,17 @@ package ic.doc;
 
 import java.util.Stack;
 
-public class Calculator {
+public class BackEnd {
 
   private final Stack<Double> values = new Stack<>();
+  private String text;
 
-  public Calculator() {
+  public String getText() {
+    return text;
   }
 
-  public String peekStack() {
-    return values.peek().toString();
+  public void setText(String text) {
+    this.text = text;
   }
 
   public void pushToStack(double value) {
@@ -34,6 +36,12 @@ public class Calculator {
   }
 
   public void div() {
-    values.push(values.pop() / values.pop());
+    Double snd = values.pop();
+    Double fst = values.pop();
+    values.push(fst / snd);
+  }
+
+  public Double peekStack() {
+    return values.peek();
   }
 }

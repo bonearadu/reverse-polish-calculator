@@ -3,17 +3,13 @@ package ic.doc;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.util.List;
-import javax.swing.JButton;
-import javax.swing.JFrame;
-import javax.swing.JPanel;
-import javax.swing.JTextField;
-import javax.swing.WindowConstants;
+import javax.swing.*;
 
 public class View implements Updatable {
 
   private final int textFieldSize = 10;
-  private final int frameWidth = 400;
-  private final int frameheight = 300;
+  private final int frameWidth = 150;
+  private final int frameHeight = 250;
 
   public final JTextField textField;
 
@@ -21,9 +17,9 @@ public class View implements Updatable {
     JFrame frame = new JFrame();
     JPanel panel = new JPanel();
     textField = new JTextField(textFieldSize);
-    frame.setSize(frameWidth, frameheight);
+    frame.setSize(frameWidth, frameHeight);
+    frame.setResizable(false);
     frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
-
     List<JButton> buttons = createButtons();
     for (JButton button : buttons) {
       button.addActionListener(controller);
@@ -39,8 +35,8 @@ public class View implements Updatable {
     return textField;
   }
 
-  public void update (Calculator calculator) {
-    textField.setText(calculator.peekStack());
+  public void update (BackEnd backEnd) {
+    textField.setText(backEnd.getText());
   }
 
   private List<JButton> createButtons() {

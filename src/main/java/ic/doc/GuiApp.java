@@ -6,11 +6,11 @@ import java.awt.event.ActionListener;
 
 public class GuiApp {
 
-  private final Calculator calculator;
+  private final BackEnd backEnd;
   private final View view;
 
   public GuiApp() {
-    this.calculator = new Calculator();
+    this.backEnd = new BackEnd();
     this.view = new View(new Controller());
   }
 
@@ -25,37 +25,38 @@ public class GuiApp {
       JTextField textField = view.getTextField();
 
       if ("+-*/".contains(action)) {
-        if (calculator.canDoOp()) {
+        if (backEnd.canDoOp()) {
           switch (action) {
             case "+":
-              calculator.add();
+              backEnd.add();
               break;
             case "-":
-              calculator.sub();
+              backEnd.sub();
               break;
             case "*":
-              calculator.mul();
+              backEnd.mul();
               break;
             case "/":
-              calculator.div();
+              backEnd.div();
               break;
             default:
               break;
           }
-          view.update(calculator);
+          backEnd.setText(backEnd.peekStack().toString());
         }
       } else {
         switch (action) {
           case "Push":
-            calculator.pushToStack(Double.parseDouble(textField.getText()));
-            textField.setText("");
+            backEnd.pushToStack(Double.parseDouble(textField.getText()));
+            backEnd.setText("");
           case "Clear":
-            textField.setText("");
+            backEnd.setText("");
             break;
           default:
-            textField.setText(textField.getText() + action);
+            backEnd.setText(textField.getText() + action);
         }
       }
+      view.update(backEnd);
     }
   }
 
