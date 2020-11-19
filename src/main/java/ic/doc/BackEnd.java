@@ -24,24 +24,45 @@ public class BackEnd {
   }
 
   public void add() {
-    values.push(values.pop() + values.pop());
+    if (canDoOp()) {
+      values.push(values.pop() + values.pop());
+    }
   }
 
   public void sub() {
-    values.push(values.pop() - values.pop());
+    if (canDoOp()) {
+      Double snd = values.pop();
+      Double fst = values.pop();
+      values.push(fst - snd);
+    }
   }
 
   public void mul() {
-    values.push(values.pop() * values.pop());
+    if (canDoOp()) {
+      values.push(values.pop() * values.pop());
+    }
   }
 
   public void div() {
-    Double snd = values.pop();
-    Double fst = values.pop();
-    values.push(fst / snd);
+    if (canDoOp()) {
+      Double snd = values.pop();
+      Double fst = values.pop();
+      values.push(fst / snd);
+    }
+  }
+
+  public boolean stackEmpty() {
+    return values.isEmpty();
+  }
+
+  public int stackSize() {
+    return values.size();
   }
 
   public Double peekStack() {
+    if (stackEmpty()) {
+      throw new UnsupportedOperationException("Stack is empty");
+    }
     return values.peek();
   }
 }

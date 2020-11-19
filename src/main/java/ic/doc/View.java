@@ -3,7 +3,11 @@ package ic.doc;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.util.List;
-import javax.swing.*;
+import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JPanel;
+import javax.swing.JTextField;
+import javax.swing.WindowConstants;
 
 public class View implements Updatable {
 
@@ -35,12 +39,12 @@ public class View implements Updatable {
     return textField;
   }
 
-  public void update (BackEnd backEnd) {
+  public void update(BackEnd backEnd) {
     textField.setText(backEnd.getText());
   }
 
   private List<JButton> createButtons() {
-    List <JButton> buttons = new ArrayList<>();
+    List<JButton> buttons = new ArrayList<>();
     for (int i = 1; i < 10; i++) {
       buttons.add(new JButton(String.valueOf(i)));
     }

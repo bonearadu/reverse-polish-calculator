@@ -1,8 +1,8 @@
 package ic.doc;
 
-import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import javax.swing.JTextField;
 
 public class GuiApp {
 
@@ -25,30 +25,29 @@ public class GuiApp {
       JTextField textField = view.getTextField();
 
       if ("+-*/".contains(action)) {
-        if (backEnd.canDoOp()) {
-          switch (action) {
-            case "+":
-              backEnd.add();
-              break;
-            case "-":
-              backEnd.sub();
-              break;
-            case "*":
-              backEnd.mul();
-              break;
-            case "/":
-              backEnd.div();
-              break;
-            default:
-              break;
-          }
-          backEnd.setText(backEnd.peekStack().toString());
+        switch (action) {
+          case "+":
+            backEnd.add();
+            break;
+          case "-":
+            backEnd.sub();
+            break;
+          case "*":
+            backEnd.mul();
+            break;
+          case "/":
+            backEnd.div();
+            break;
+          default:
+            break;
         }
+        backEnd.setText(backEnd.peekStack().toString());
       } else {
         switch (action) {
           case "Push":
             backEnd.pushToStack(Double.parseDouble(textField.getText()));
             backEnd.setText("");
+            break;
           case "Clear":
             backEnd.setText("");
             break;
